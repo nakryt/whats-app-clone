@@ -8,7 +8,7 @@ import {
   MoreVert as MoreVertIcon,
   SearchOutlined as SearchOutlinedIcon,
 } from "@material-ui/icons";
-
+import {useHistory} from 'react-router-dom'
 import firebase from "firebase";
 import db from "../../firebase";
 
@@ -21,6 +21,7 @@ interface Room {
 }
 
 export const Sidebar = () => {
+  const history = useHistory()
   const [rooms, setRooms] = useState<Room[]>([]);
   const {
     state: { user },
@@ -40,6 +41,12 @@ export const Sidebar = () => {
       unsubscribe();
     };
   }, []);
+
+  useEffect(() => {
+    if (rooms.length > 0)
+      history.push(`/rooms/${rooms[0].id}`)
+  }, [rooms])
+
 
   return (
     <div className="sidebar">

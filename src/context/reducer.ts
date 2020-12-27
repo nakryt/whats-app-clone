@@ -1,10 +1,5 @@
 import firebase from "firebase";
 
-interface User {
-  displayName: string | null;
-  email: string;
-}
-
 export const initialState = {
   user: null as firebase.User | null,
 };
